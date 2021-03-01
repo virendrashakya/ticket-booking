@@ -1,1 +1,28 @@
 @import 'bootstrap/dist/css/bootstrap';
+
+.bg-darkgrey {
+    background: darkgray;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    // background-color: DodgerBlue;
+    justify-content: space-evenly ;
+    align-items: stretch;
+    height: 300px;
+  }
+  
+  .flex-container > div {
+    background-color: #f1f1f1;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    border-radius: 5px;
+    width: 250px;
+    padding: 5px;
+    background: gray;
+    border: 1px solid #616161;
+  }

@@ -1,0 +1,9 @@
+<%= @show.movie_name%>
+<%= @show.screen.name%>
+<div>
+
+    <%- @show.screen.seats.each do |seat|%>
+        <span> <%= seat.price%> </span>
+    <%- end %>
+
+</div>
