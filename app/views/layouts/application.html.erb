@@ -11,7 +11,10 @@
   </head>
 
   <body>
-    <%= render partial: "./shared/header" %>
+    <% unless current_user.nil? %>
+      <%= render partial: './shared/header' %>
+    <% end %>
+    <%= render partial: './shared/flash_message' %>
     <%= yield %>
   </body>
 </html>
