@@ -6,8 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   def new
     super
-    return redirect_to users_dashboard_summary_path if current_user.present?
-
+    redirect_to show_index_path if current_user.present?
   end
 
   # POST /resource/sign_in

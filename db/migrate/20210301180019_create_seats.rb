@@ -4,6 +4,7 @@ class CreateSeats < ActiveRecord::Migration[6.1]
       t.string :category
       t.float :price
       t.integer :screen_id
+      t.integer :order_id
       t.timestamps
     end
   end

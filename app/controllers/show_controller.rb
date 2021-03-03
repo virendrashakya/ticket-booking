@@ -6,6 +6,10 @@ class ShowController < ApplicationController
     find_show
   end
 
+  def book_seats
+    # binding.pry
+  end
+
   private
 
   def find_show

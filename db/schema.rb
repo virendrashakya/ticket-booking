@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_01_195549) do
+ActiveRecord::Schema.define(version: 2021_03_01_180256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "seat_booking_id"
+    t.integer "seat_ids", default: [], array: true
+    t.integer "show_id"
     t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -30,18 +31,11 @@ ActiveRecord::Schema.define(version: 2021_03_01_195549) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "seat_bookings", force: :cascade do |t|
-    t.integer "seat_id"
-    t.integer "order_id"
-    t.integer "show_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "seats", force: :cascade do |t|
     t.string "category"
     t.float "price"
     t.integer "screen_id"
+    t.integer "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

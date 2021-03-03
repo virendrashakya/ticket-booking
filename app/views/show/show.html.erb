@@ -1,9 +1,16 @@
 <%= @show.movie_name%>
 <%= @show.screen.name%>
 <div>
-
-    <%- @show.screen.seats.each do |seat|%>
-        <span> <%= seat.price%> </span>
-    <%- end %>
+    <%= form_with url: "/orders", method: :post do |form| %>
+        <%- @show.screen.seats.each_with_index do |seat, index|%>
+            <span> <%= seat.price%> </span>
+            <%= check_box_tag "seat_id[]", seat.id, false, disabled: seat.booked? %> <br />
+            <%= hidden_field_tag "screen_id", seat.screen_id %>
+            <%= hidden_field_tag "show_id", @show.id %>
+        <%- end %>
+        <%= submit_tag "Save", data: { confirm: "Are you sure?" }%>
+    <% end %>
 
 </div>
+
+
