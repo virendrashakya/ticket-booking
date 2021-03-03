@@ -2,11 +2,17 @@
 <%= @show.screen.name%>
 <div>
     <%= form_with url: "/orders", method: :post do |form| %>
-        <%- @show.screen.seats.each_with_index do |seat, index|%>
-            <span> <%= seat.price%> </span>
-            <%= check_box_tag "seat_id[]", seat.id, false, disabled: seat.booked? %> <br />
-            <%= hidden_field_tag "screen_id", seat.screen_id %>
-            <%= hidden_field_tag "show_id", @show.id %>
+        <%- @show.screen.seats.group_by(&:category).each do |category, seats|%>
+            <strong><%= category %></strong>
+            <div>
+                <%- seats.each do |seat|%>
+                    <span> <%= seat.price%> </span>
+                    <%= check_box_tag "seat_id[]", seat.id, false, disabled: seat.booked? %>
+                    <%= hidden_field_tag "screen_id", seat.screen_id %>
+                    <%= hidden_field_tag "show_id", @show.id %>
+                <% end %>
+            </div>
+            
         <%- end %>
         <%= submit_tag "Save", data: { confirm: "Are you sure?" }%>
     <% end %>

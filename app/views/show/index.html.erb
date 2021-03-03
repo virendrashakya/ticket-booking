@@ -2,8 +2,7 @@
     <div class="flex-container">
         <% Show.all.each do |show| %>
             <div class="">
-                <%= link_to show.movie_name, show_path(show.id), class:"nav-link" %>
-                
+                <%= link_to show.movie_name, show_path(show.id), class:"nav-link" %>             
             </div>
         <% end %>
     </div>

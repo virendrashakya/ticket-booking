@@ -1,5 +1,38 @@
-<div>
-    Email: <%= current_user.email%>
+<style>
+    .past-orders {
+        background: red;
+    }
+    .upcomming-orders {
+        background: blue;
+    }
+    .running_orders {
+        background: purple;
+    }
+</style>
+<div class="container-fluid bg-darkgrey">
+    <div class="flex-container past-orders">
+        <% @past_orders.each do |order| %>
+            <div class="">
+                <span><%= order.show.movie_name%></span>             
+            </div>
+        <% end %>
+    </div>
+
+    <div class="flex-container upcomming-orders">
+        <% @upcomming_orders.each do |order| %>
+            <div class="">
+                <span><%= order.show.movie_name%></span> 
+            </div>
+        <% end %>
+    </div>
+
+    <div class="flex-container running_orders">
+        <% @running_orders.each do |order| %>
+            <div class="">
+                <span><%= order.show.movie_name%></span> 
+            </div>
+        <% end %>
+    </div>
 </div>
 
 <%= link_to "Browse Shows...", show_index_path, class:"btn btn-primary" %>

@@ -3,7 +3,8 @@ class ShowController < ApplicationController
   end
 
   def show
-    find_show
+    # find_show
+    @show = Show.find(params[:id])
   end
 
   def book_seats
@@ -13,6 +14,6 @@ class ShowController < ApplicationController
   private
 
   def find_show
-    @show = Show.find(params[:id])
+    
   end
 end
