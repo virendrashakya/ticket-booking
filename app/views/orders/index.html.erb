@@ -32,7 +32,7 @@
             <%- @orders.each do |order| %>
                 <tr>
                     <th scope="row"><%= order.created_at.strftime("Printed on %m/%d/%Y at %I:%M%p")%></th>
-                    <td><%= order.seat_ids.count %></td>
+                    <td><%= order.seat_ids.try(:count) %></td>
                     <td><%= order.show.movie_name %></td>
                     <td><%= order.show.duration %></td>
                     <th scope="col">$ <%= order.price %></th>

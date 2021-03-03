@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'screens/index'
+
   get 'home/index'
   root to: 'users/dashboard#summary'
 
-  post 'show/:id/book-seats', to: 'show#book_seats'
 
   # resources :show
 

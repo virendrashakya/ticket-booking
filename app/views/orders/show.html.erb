@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+        User Email
+    </div>
+    <div class="col-sm-6">
+        <%= @order.user.email%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+        Show Name
+    </div>
+    <div class="col-sm-6">
+        <%= @order.show.movie_name%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+        Show Duration
+    </div>
+    <div class="col-sm-6">
+        <%= @order.show.duration%> minutes
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+        Show Date
+    </div>
+    <div class="col-sm-6">
+        <%= @order.show.start_time.strftime("%m / %d / %Y") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+        Show Timing
+    </div>
+    <div class="col-sm-6">
+        <%= @order.show.start_time.strftime("%I:%M %p") %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+        Price Breakup
+    </div>
+    <div class="col-sm-6">
+        <%- @order.seats.group_by(&:category).each do |category, seats| %>
+            <%= seats.count %> x <%= category %>($<%= seats[0].price%>)
+        <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+        Order Total
+    </div>
+    <div class="col-sm-6">
+        $<%= @order.price%>
+    </div>
+  </div>
+</div>
