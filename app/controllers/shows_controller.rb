@@ -1,10 +1,10 @@
-class ShowController < ApplicationController
+class ShowsController < ApplicationController
   def index
   end
 
   def show
     # find_show
-    @show = Show.find(params[:id])
+    @show = Show.friendly.find(params[:id].downcase)
   end
 
   def book_seats

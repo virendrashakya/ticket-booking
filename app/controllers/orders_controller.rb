@@ -1,4 +1,9 @@
 class OrdersController < ApplicationController
+
+  def index
+    @orders = current_user.orders
+  end
+
   def create
     seats = Seat.where(id: params[:seat_id])
     total_price = seats.pluck(:price).sum
