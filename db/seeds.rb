@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Create Admin User
+Admin.create(email: 'admin@promobi.com', password: '123456')
+
 # Create Test User
 user = User.new(email: 'test@test.com', username: 'test', first_name: 'Test', last_name: 'User', mobile: '91919199
 19', dob: (DateTime.now - 30.years), gender: 'M',password: '123456')

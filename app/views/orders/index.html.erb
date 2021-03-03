@@ -31,13 +31,19 @@
         <tbody>
             <%- @orders.each do |order| %>
                 <tr>
-                    <th scope="row"><%= order.created_at.strftime("Printed on %m/%d/%Y at %I:%M%p")%></th>
+                    <th scope="row"><%= order.created_at.strftime("%m/%d/%Y at %I:%M%p")%></th>
                     <td><%= order.seat_ids.try(:count) %></td>
                     <td><%= order.show.movie_name %></td>
                     <td><%= order.show.duration %></td>
                     <th scope="col">$ <%= order.price %></th>
                     <td>
-                    <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                    <%= link_to order_path(order.id), :class => "btn btn-sm" do %>
+                      <i class="fas fa-eye"></i>
+                    <% end %>
+
+                    <%= link_to order_path(order.id, format: :pdf), :class => "btn btn-sm" do %>
+                      <i class="fas fa-print"></i>
+                    <% end %>
                     </td>
                 </tr>
             <%- end %>

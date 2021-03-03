@@ -1,0 +1,18 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Ei-user.svg/1200px-Ei-user.svg.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", id:"login", class:"fadeIn second text-input", placeholder: "Email" %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "password", id:"password", class:"fadeIn third text-input", placeholder: "Password"%>
+      <%= f.submit "Log in", class: "fadeIn fourth " %>
+    <% end %>
+
+  </div>
+</div>  

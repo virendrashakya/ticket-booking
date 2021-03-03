@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
   # action filter
-  before_action :find_order, only: [:show]
+  before_action :find_order, only: [:show, :order_report]
 
   def index
     @orders = current_user.orders
@@ -24,7 +24,18 @@ class OrdersController < ApplicationController
   end
 
   def show
-    
+    respond_to do |format|
+      format.html
+      format.pdf do
+          render pdf: "Invoice No. 12345",
+          page_size: 'A4',
+          template: "orders/show.html.erb",
+          layout: "pdf.html",
+          lowquality: true,
+          zoom: 1,
+          dpi: 75
+      end
+    end
   end
 
   private
