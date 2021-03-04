@@ -9,7 +9,7 @@
           </tr>
         </thead>
         <tbody>
-            <%- User.includes(:orders).all.each.each do |user| %>
+            <%- @users.each.each do |user| %>
                 <tr>
                     <th scope="row"><%= user.email %></th>
                     <th scope="row"><%= user.orders.pluck(:price).sum %></th>

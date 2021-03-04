@@ -1,8 +1,9 @@
 class Admin::OrdersController < Admin::ApplicationController
 
-  before_action :find_order, only: [:show, :order_report]
+  before_action :find_order, only: [:show]
 
   def index
+    @all_orders = Order.all.includes(:show)
   end
 
   def show

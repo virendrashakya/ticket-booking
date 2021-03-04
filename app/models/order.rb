@@ -1,5 +1,10 @@
 class Order < ApplicationRecord
 
+    # scopes
+    scope :past_orders, -> { self.joins(:show).distinct(:show_id).where("end_time < ?",DateTime.now) }
+    scope :upcomming_orders, -> { self.joins(:show).distinct(:show_id).where("end_time > ?",DateTime.now) }
+    scope :running_orders, -> { self.joins(:show).distinct(:show_id).where("start_time < ? AND end_time > ?", DateTime.now, DateTime.now) }
+
     # associations
     belongs_to :user
     belongs_to :show

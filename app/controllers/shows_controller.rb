@@ -1,21 +1,18 @@
 class ShowsController < ApplicationController
+  
+  before_action :find_show, only: [:show]
+  
   def index
-    @shows = Show.all
+    
   end
 
   def show
-    # find_show
-    # binding.pry
-    @show = Show.find(params[:id])
-  end
-
-  def book_seats
-    # binding.pry
+    
   end
 
   private
 
   def find_show
-    
+    @show = Show.find(params[:id])
   end
 end
