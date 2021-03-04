@@ -91,7 +91,7 @@
                 <div class="row-flex">
                     <%- seats.each_with_index do |seat, index|%>
                         <div class="custom-control custom-checkbox checkbox-xl">
-                            <%= check_box_tag "seat_id[]", seat.id, false, disabled: seat.booked?, class:"custom-control-input", id:"seat-#{seat.id}" %>
+                            <%= check_box_tag "seat_id[]", seat.id, false, disabled: seat.booked?(@show.id), class:"custom-control-input", id:"seat-#{seat.id}" %>
                             <%= label_tag "", nil, class: 'custom-control-label', for:"seat-#{seat.id}" %>
                         </div>
                         <%= hidden_field_tag "screen_id", seat.screen_id %>

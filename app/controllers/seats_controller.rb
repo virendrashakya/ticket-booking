@@ -6,7 +6,7 @@ class SeatsController < ApplicationController
         o = Order.new(user_id: current_user.id, seat_ids: params[:seat_id], show_id: params[:show_id], price: total_price)
         ActiveRecord::Base.transaction do
             if o.save
-                seats.update(order_id: o.id)
+                seats.update(order_id: o.id, show_id: params[:show_id])
                 flash[:success] = "Order placed successfully"
                 redirect_to orders_path
             else

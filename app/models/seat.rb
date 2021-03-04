@@ -27,7 +27,7 @@ class Seat < ApplicationRecord
     accepts_nested_attributes_for :seet_bookings
 
     # instance methods
-    def booked?
-        order_id.present?
+    def booked? show_id
+        order_id.present? && (self.show_id == show_id)
     end
 end

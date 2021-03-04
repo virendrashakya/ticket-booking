@@ -29,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-            <%- @orders.each do |order| %>
+            <%- @orders.includes(:show).each do |order| %>
                 <tr>
                     <th scope="row"><%= order.created_at.strftime("%m/%d/%Y at %I:%M%p")%></th>
                     <td><%= order.seat_ids.try(:count) %></td>

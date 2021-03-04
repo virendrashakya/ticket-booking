@@ -14,7 +14,7 @@
     }
 </style>
 <div class="container-fluid bg-darkgrey">
-    <% Screen.all.each do |screen| %>
+    <% Screen.all.includes(:shows).each do |screen| %>
         <div class="row screen-header">
             <span><%= screen.name %></span>
         </div>
