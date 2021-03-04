@@ -15,45 +15,23 @@ user = User.new(email: 'test@test.com', username: 'test', first_name: 'Test', la
 user.save
 
 # create screen
-screen = Screen.new(name: 'Audi1', seat_count: 50)
-screen.save
+Screen::NAME.each do |screen_name|
+    Screen.create(name: screen_name, seat_count: 40)
+end
 
 # create show
-show = Show.new(movie_name: "Mohabbatein", screen_id: screen.id, start_time: (DateTime.now-10.hours), end_time:
- (DateTime.now-7.hours))
-show.save
-show = Show.new(movie_name: "DDLJ", screen_id: screen.id, start_time: (DateTime.now-10.hours), end_time:
- (DateTime.now-7.hours))
-show.save
+Show::TIMINGS.each do |timing|
+    Show::MOVIE_NAME.each do |name|
+        Screen.all.each do |screen|
+            Show.create(movie_name: name, screen_id: screen.id, start_time: timing[:start_time], end_time: timing[:end_time])
+        end
+    end
+end
 
-seat = Seat.create(category: 'platinum', price: 20.00, screen_id: screen.id)
-seat = Seat.create(category: 'platinum', price: 20.00, screen_id: screen.id)
-seat = Seat.create(category: 'platinum', price: 20.00, screen_id: screen.id)
-seat = Seat.create(category: 'platinum', price: 20.00, screen_id: screen.id)
-seat = Seat.create(category: 'platinum', price: 20.00, screen_id: screen.id)
-seat = Seat.create(category: 'platinum', price: 20.00, screen_id: screen.id)
-seat = Seat.create(category: 'platinum', price: 20.00, screen_id: screen.id)
-
-seat = Seat.create(category: 'basic', price: 10.00, screen_id: screen.id)
-seat = Seat.create(category: 'basic', price: 10.00, screen_id: screen.id)
-seat = Seat.create(category: 'basic', price: 10.00, screen_id: screen.id)
-seat = Seat.create(category: 'basic', price: 10.00, screen_id: screen.id)
-seat = Seat.create(category: 'basic', price: 10.00, screen_id: screen.id)
-seat = Seat.create(category: 'basic', price: 10.00, screen_id: screen.id)
-seat = Seat.create(category: 'basic', price: 10.00, screen_id: screen.id)
-
-
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
-seat = Seat.create(category: 'Execcutive', price: 50.00, screen_id: screen.id)
+Screen.all.each do |screen|
+    Seat::CATEGORY.each do |category|
+        30.times do
+            Seat.create(category: category[:name], price: category[:price], screen_id: screen.id)
+        end
+    end
+end

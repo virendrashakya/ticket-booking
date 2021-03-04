@@ -4,7 +4,8 @@ class ShowsController < ApplicationController
 
   def show
     # find_show
-    @show = Show.friendly.find(params[:id].downcase)
+    # binding.pry
+    @show = Show.find(params[:id])
   end
 
   def book_seats

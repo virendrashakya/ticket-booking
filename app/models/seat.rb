@@ -1,6 +1,23 @@
 class Seat < ApplicationRecord
 
-    # scopes
+    CATEGORY = [
+        {
+            name: 'Economy',
+            price: '50.00'
+        },
+        {
+            name: 'Gold',
+            price: '70.00'
+        },
+        {
+            name: 'Platinum',
+            price: '120.00'
+        },
+        {
+            name: 'Recliner',
+            price: '200.00'
+        }
+    ]
 
     # association
     has_many :seet_bookings

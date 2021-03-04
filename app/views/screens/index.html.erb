@@ -19,7 +19,7 @@
                     <%= show.movie_name%>
                     <br/>
                     <%= show.start_time.strftime("Start at %m/%d/%Y at %I:%M%p") %>
-                    <%= link_to 'Book Now', "/screens/#{screen.name}/shows/#{show.movie_name}", class:"btn btn-primary" %>
+                    <%= link_to 'Book Now', "/screens/#{screen.id}/shows/#{show.id}", class:"btn btn-primary" %>
                 </div>
             <% end %>
         </div>
