@@ -15,10 +15,10 @@ class OrdersController < ApplicationController
     ActiveRecord::Base.transaction do
       if o.save
         seats.update(order_id: o.id)
-        flash[:success] = "Woohoo!"
-        render 'show'
+        flash[:success] = "Order placed successfully"
+        redirect_to orders_path
       else
-        flash[:alert] = "Alerting you to the monkey on your car!"
+        flash[:alert] = "Something went wrong"
       end
     end
   end
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-          render pdf: "Invoice No. 12345",
+          render pdf: "Order #{@order.id}",
           page_size: 'A4',
           template: "orders/show.html.erb",
           layout: "pdf.html",
