@@ -4,16 +4,20 @@
     background: darkgray;
 }
 
+body {
+  background: darkgrey !important;
+}
+
 .flex-container {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: stretch;
   height: 300px;
-  background: #9156bb;
+  background: linear-gradient(45deg, #2d696b, #69878c);
   margin: 10px 15px;
   width: 200px;
   border-radius: 6px;
-  box-shadow: 2px 3px 7px 1px;
+  box-shadow: 5px 5px 11px 0px;
   padding: 5px 15px;
 }
   
@@ -36,7 +40,7 @@
 /* BASIC */
 
 html {
-  background-color: #56baed;
+  // background-color: #56baed;
 }
 
 body {

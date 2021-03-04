@@ -5,6 +5,14 @@
   width: 1.85rem;
   height: 1.85rem;
 }
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+    background-image: unset !important;
+    /* background: blue; */
+}
+
+.bg-white {
+    background: white;
+}
 
 .bg-red {
     background: #d43c6c;
@@ -27,6 +35,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    height: 100px;
 }
 
 .text-capitalise {
@@ -38,21 +47,44 @@
     margin: 10px 100px;
     padding: 5px;
 }
+
+.movie-detail-header {
+    text-align: center;
+    background: #d7dad8;
+    padding: 5px;
+}
 </style>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 text-center" style="font-size: 1.5em">
-            <%= @show.movie_name%>
+        <div class="col-md-3" style="border-right: 2px dotted gray;">
+            <div class="movie-detail-header">
+                Movie Detail
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center" style="font-size: 1.2em">
+                    Selected Screen
+                </div>
+                <div class="col-md-12 text-center" style="font-size: 1.2em">
+                    <strong><%= @show.screen.name%></strong>
+                </div>
+                <div class="col-md-12 text-center" style="font-size: 1.2em">
+                    Movie Name 
+                </div>
+                <div class="col-md-12 text-center" style="font-size: 1.2em">
+                    <strong><%= @show.movie_name%></strong>
+                </div>
+                <div class="col-md-12 text-center" style="font-size: 1.2em">
+                    Movie Timing 
+                </div>
+                <div class="col-md-12 text-center" style="font-size: 1.2em">
+                    <strong><%= @show.start_time.strftime("%d %b %Y, %I:%M%p") %></strong>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 text-center" style="font-size: 1.5em">
-            <%= @show.screen.name%>
-        </div>
-    </div>
-
-    <div class="row">
+        <div class="col-md-9 bg-white">
         <%= form_with url: "/screens/#{@show.screen_id}/shows/#{@show.id}/seats/book", class:"custom-form", method: :post do |form| %>
-            <%- @show.screen.seats.group_by(&:category).each do |category, seats|%>
+            <%- @show.screen.seats.order('created_at DESC').group_by(&:category).each do |category, seats|%>
                 <div class="text-center subheader-row">
                     <strong class="text-capitalise"><%= category %></strong> ($<span> <%= seats[0].price%> </span>)
                 </div>
@@ -60,7 +92,7 @@
                     <%- seats.each_with_index do |seat, index|%>
                         <div class="custom-control custom-checkbox checkbox-xl">
                             <%= check_box_tag "seat_id[]", seat.id, false, disabled: seat.booked?, class:"custom-control-input", id:"seat-#{seat.id}" %>
-                            <%= label_tag "P#{index+1}", nil, class: 'custom-control-label', for:"seat-#{seat.id}" %>
+                            <%= label_tag "", nil, class: 'custom-control-label', for:"seat-#{seat.id}" %>
                         </div>
                         <%= hidden_field_tag "screen_id", seat.screen_id %>
                         <%= hidden_field_tag "show_id", @show.id %>
@@ -69,12 +101,12 @@
                 
             <%- end %>
             <div class="row">
-                <div class="col-md-6 text-center" style="margin-top: 20px;">
-                    <%= button_tag "Save", data: { confirm: "Are you sure?" }%>
+                <div class="col-md-12 text-center" style="margin-top: 20px;">
                     <%= submit_tag "Save", data: { confirm: "Are you sure?" }%>
                 </div>
             </div>
         <% end %>
+        </div>
     </div>
 
 </div>

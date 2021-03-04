@@ -3,10 +3,15 @@
     .screen-header {
         text-align: center;
         display: block;
-        background: lightseagreen;
-        font-size: 2.2em;
+        background: #5f5f5f;
+        font-size: 1.8em;
         /* font-family: sans-serif; */
-        color: white;
+        text-transform: capitalize;
+        color: #b5b5b5;
+    }
+    .movie-title {
+        font-size: 2.2em;
+        font-weight: 500;
     }
     .past-orders {
         background: red;
@@ -17,6 +22,18 @@
     .running_orders {
         background: purple;
     }
+    .float-button {
+        border-radius: 50%;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        height: 75px;
+        width: 75px;
+        font-size: 2.6em;
+        background: #3f7174;
+        color: white;
+        box-shadow: 0px 0px 14px 6px orangered;
+    }
 </style>
 <div class="container-fluid bg-darkgrey">
     
@@ -24,6 +41,13 @@
         <span>Past Orders</span>
     </div>
     <div class="row">
+        <% if @past_orders.blank? %>
+            <div class="col-md-12 text-center">
+                <span>
+                    No Past Orders
+                </span>
+            </div>
+        <% end %>
         <% @past_orders.each do |order| %>
             <div class="flex-container">
                 <%= order.show.movie_name%>
@@ -37,6 +61,13 @@
         <span>Upcoming Orders</span>
     </div>
     <div class="row">
+        <% if @upcomming_orders.blank? %>
+            <div class="col-md-12 text-center">
+                <span>
+                    No Upcomming Orders
+                </span>
+            </div>
+        <% end %>
         <% @upcomming_orders.each do |order| %>
             <div class="flex-container">
                 <%= order.show.movie_name%>
@@ -50,6 +81,13 @@
         <span>Running Shows</span>
     </div>
     <div class="row">
+        <% if @running_orders.blank? %>
+            <div class="col-md-12 text-center">
+                <span>
+                    No Running Shows
+                </span>
+            </div>
+        <% end %>
         <% @running_orders.each do |order| %>
             <div class="flex-container">
                 <%= order.show.movie_name%>
@@ -59,6 +97,8 @@
         <% end %>
     </div>
 
-    <%= link_to "Browse Shows...", screens_path, class:"row screen-header btn btn-primary" %>
+    <%= link_to screens_path, class:"btn float-button" do %>
+        <i class="fas fa-angle-double-right"></i>
+    <% end %>
 
 </div>

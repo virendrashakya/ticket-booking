@@ -56,6 +56,7 @@ class Show < ApplicationRecord
     # validations
     validates :movie_name, presence: true
     validate :check_show_duration, :check_start_time
+    validates_uniqueness_of :screen_id, scope: :start_time #multiple show can't be run at same time in a screen
 
     # association
     belongs_to :screen

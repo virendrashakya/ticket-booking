@@ -21,10 +21,9 @@ end
 
 # create show
 Show::TIMINGS.each do |timing|
-    Show::MOVIE_NAME.each do |name|
-        Screen.all.each do |screen|
-            Show.create(movie_name: name, screen_id: screen.id, start_time: timing[:start_time], end_time: timing[:end_time])
-        end
+    movie_name = Show::MOVIE_NAME.sample
+    Screen.all.each do |screen|
+        Show.create(movie_name: movie_name, screen_id: screen.id, start_time: timing[:start_time], end_time: timing[:end_time])
     end
 end
 
