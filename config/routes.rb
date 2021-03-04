@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :screens, only: [:index] do
   member do
-      resources :shows do
+      resources :shows, only: [:show] do
         member do
           resources :seats do
             collection do
