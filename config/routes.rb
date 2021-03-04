@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     resources :report, only: [:index]
+    resources :orders, only: [:index]
+    resources :users, only: [:index]
   end
 
   resources :orders
@@ -21,7 +23,11 @@ Rails.application.routes.draw do
   member do
       resources :shows do
         member do
-          resources :seats
+          resources :seats do
+            collection do
+              post 'book', to: 'book'
+            end
+          end
         end
       end
     end

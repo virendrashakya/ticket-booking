@@ -1,0 +1,38 @@
+<style>
+    .container {
+    padding: 2rem 0rem;
+    }
+
+    h4 {
+    margin: 2rem 0rem 1rem;
+    }
+
+    .table-image {
+    td, th {
+        vertical-align: middle;
+    }
+    }
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">User Email</th>
+            <th scope="col">Total Spent</th>
+          </tr>
+        </thead>
+        <tbody>
+            <%- User.all.each.each do |user| %>
+                <tr>
+                    <th scope="row"><%= user.email %></th>
+                    <th scope="row"><%= user.orders.pluck(:price).sum %></th>
+                </tr>
+            <%- end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

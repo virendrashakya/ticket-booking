@@ -9,21 +9,19 @@
     }
 </style>
 <div class="container-fluid bg-darkgrey">
-    <div class="">
-        <% Screen.all.each do |screen| %>
-            <div class="row screen-header">
-                <span><%= screen.name %></span>
-            </div>
-            <div class="row">
-                <% screen.shows.each do |show| %>
-                    <div class="flex-container">
-                        <%= show.movie_name%>
-                        <br/>
-                        <%= show.start_time.strftime("Start at %m/%d/%Y at %I:%M%p") %>
-                        <%= link_to 'Book Now', "/screens/#{screen.name}/shows/#{show.movie_name}", class:"btn btn-primary" %>
-                    </div>
-                <% end %>
-            </div>
-        <% end %>
-    </div>
+    <% Screen.all.each do |screen| %>
+        <div class="row screen-header">
+            <span><%= screen.name %></span>
+        </div>
+        <div class="row">
+            <% screen.shows.each do |show| %>
+                <div class="flex-container">
+                    <%= show.movie_name%>
+                    <br/>
+                    <%= show.start_time.strftime("Start at %m/%d/%Y at %I:%M%p") %>
+                    <%= link_to 'Book Now', "/screens/#{screen.name}/shows/#{show.movie_name}", class:"btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
 </div>

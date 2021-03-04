@@ -12,9 +12,11 @@
 
   <body>
     <% unless current_admin.nil? %>
-      <%= render partial: './shared/header' %>
+      <%= render partial: './shared/sidebar' %>
     <% end %>
-    <%= render partial: './shared/flash_message' %>
-    <%= yield %>
+    <div class="main">
+        <%= render partial: './shared/flash_message' %>
+        <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,4 +1,13 @@
+
 <style>
+    .screen-header {
+        text-align: center;
+        display: block;
+        background: lightseagreen;
+        font-size: 2.2em;
+        /* font-family: sans-serif; */
+        color: white;
+    }
     .past-orders {
         background: red;
     }
@@ -10,29 +19,46 @@
     }
 </style>
 <div class="container-fluid bg-darkgrey">
-    <div class="flex-container past-orders">
+    
+    <div class="row screen-header">
+        <span>Past Orders</span>
+    </div>
+    <div class="row">
         <% @past_orders.each do |order| %>
-            <div class="">
-                <span><%= order.show.movie_name%></span>             
+            <div class="flex-container">
+                <%= order.show.movie_name%>
+                <br/>
+                <%= order.show.start_time.strftime("Start at %m/%d/%Y at %I:%M%p") %>
             </div>
         <% end %>
     </div>
 
-    <div class="flex-container upcomming-orders">
+    <div class="row screen-header">
+        <span>Upcoming Orders</span>
+    </div>
+    <div class="row">
         <% @upcomming_orders.each do |order| %>
-            <div class="">
-                <span><%= order.show.movie_name%></span> 
+            <div class="flex-container">
+                <%= order.show.movie_name%>
+                <br/>
+                <%= order.show.start_time.strftime("Start at %m/%d/%Y at %I:%M%p") %>
             </div>
         <% end %>
     </div>
 
-    <div class="flex-container running_orders">
+    <div class="row screen-header">
+        <span>Running Shows</span>
+    </div>
+    <div class="row">
         <% @running_orders.each do |order| %>
-            <div class="">
-                <span><%= order.show.movie_name%></span> 
+            <div class="flex-container">
+                <%= order.show.movie_name%>
+                <br/>
+                <%= order.show.start_time.strftime("Start at %m/%d/%Y at %I:%M%p") %>
             </div>
         <% end %>
     </div>
-</div>
 
-<%= link_to "Browse Shows...", screens_path, class:"btn btn-primary" %>
+    <%= link_to "Browse Shows...", screens_path, class:"row screen-header btn btn-primary" %>
+
+</div>

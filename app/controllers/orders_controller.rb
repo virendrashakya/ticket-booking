@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
         flash[:success] = "Order placed successfully"
         redirect_to orders_path
       else
-        flash[:alert] = "Something went wrong"
+        flash[:alert] = o.errors.full_messages.join(", ")
       end
     end
   end

@@ -1,21 +1,80 @@
-<%= @show.movie_name%>
-<%= @show.screen.name%>
-<div>
-    <%= form_with url: "/orders", method: :post do |form| %>
-        <%- @show.screen.seats.group_by(&:category).each do |category, seats|%>
-            <strong><%= category %></strong>
-            <div>
-                <%- seats.each do |seat|%>
-                    <span> <%= seat.price%> </span>
-                    <%= check_box_tag "seat_id[]", seat.id, false, disabled: seat.booked? %>
-                    <%= hidden_field_tag "screen_id", seat.screen_id %>
-                    <%= hidden_field_tag "show_id", @show.id %>
-                <% end %>
+<style>
+    .checkbox-xl .custom-control-label::before, 
+.checkbox-xl .custom-control-label::after {
+  top: 1.2rem;
+  width: 1.85rem;
+  height: 1.85rem;
+}
+
+.bg-red {
+    background: #d43c6c;
+}
+.bg-green {
+    background: #1d866f;
+}
+
+.custom-form {
+    width: 100%;
+}
+
+.checkbox-xl .custom-control-label {
+  padding-top: 23px;
+  padding-left: 10px;
+}
+
+.row-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.text-capitalise {
+    text-transform: capitalize;
+}
+
+.subheader-row {
+    background: #d8dad8;
+    margin: 10px 100px;
+    padding: 5px;
+}
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <%= @show.movie_name%>
+        </div>
+        <div class="col-md-6 text-center">
+            <%= @show.screen.name%>
+        </div>
+    </div>
+
+    <div class="row">
+        <%= form_with url: "/screens/#{@show.screen_id}/shows/#{@show.id}/seats/book", class:"custom-form", method: :post do |form| %>
+            <%- @show.screen.seats.group_by(&:category).each do |category, seats|%>
+                <div class="text-center subheader-row">
+                    <strong class="text-capitalise"><%= category %></strong> ($<span> <%= seats[0].price%> </span>)
+                </div>
+                <div class="row-flex">
+                    <%- seats.each_with_index do |seat, index|%>
+                        <div class="custom-control custom-checkbox checkbox-xl">
+                            <%= check_box_tag "seat_id[]", seat.id, false, disabled: seat.booked?, class:"custom-control-input", id:"seat-#{seat.id}" %>
+                            <%= label_tag "P#{index+1}", nil, class: 'custom-control-label', for:"seat-#{seat.id}" %>
+                        </div>
+                        <%= hidden_field_tag "screen_id", seat.screen_id %>
+                        <%= hidden_field_tag "show_id", @show.id %>
+                    <% end %>
+                </div>
+                
+            <%- end %>
+            <div class="row">
+                <div class="col-md-12 text-center" style="margin-top: 20px;">
+                    <%= submit_tag "Save", data: { confirm: "Are you sure?" }%>
+                </div>
             </div>
-            
-        <%- end %>
-        <%= submit_tag "Save", data: { confirm: "Are you sure?" }%>
-    <% end %>
+        <% end %>
+    </div>
 
 </div>
 
