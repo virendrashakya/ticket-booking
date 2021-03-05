@@ -15,7 +15,7 @@
       > run migration
       > run seeds.rb
       > 
-  * after this write "rasils s" on root directory on terminal
+  * after this write "rails s" on root directory on terminal
   * The application will boot on 3000 port by default
 
  # Access the application
