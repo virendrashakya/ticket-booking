@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do 
-    resources :report, only: [:index]
     resources :orders, only: [:index, :show]
     resources :users, only: [:index]
   end
